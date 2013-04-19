@@ -1,18 +1,23 @@
-package br.com.almana;
+package br.com.almana.domain;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
-@XmlRootElement(name="dog")
+@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Dog {
+public class City {
 
 	@XmlElement
 	private String name;
+
+	@XmlAttribute
+	private FederationUnit fedUnit;
 
 	public String getName() {
 		return name;
@@ -22,12 +27,18 @@ public class Dog {
 		this.name = name;
 	}
 
+	public FederationUnit getFedUnit() {
+		return fedUnit;
+	}
+
+	public void setFedUnit(FederationUnit fedUnit) {
+		this.fedUnit = fedUnit;
+	}
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
+		HashCodeBuilder builder = new HashCodeBuilder();
+		return builder.append(fedUnit).append(name).hashCode();
 	}
 
 	@Override
@@ -38,9 +49,10 @@ public class Dog {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Dog other = (Dog) obj;
+		City other = (City) obj;
 		EqualsBuilder builder = new EqualsBuilder();
-		return builder.append(name, other.getName()).isEquals();
+		return builder.append(fedUnit, other.getFedUnit())
+				.append(name, other.getName()).isEquals();
 	}
 
 }

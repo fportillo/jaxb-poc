@@ -1,4 +1,4 @@
-package br.com.almana;
+package br.com.almana.domain;
 
 import java.util.Date;
 import java.util.List;
@@ -28,8 +28,8 @@ public class User {
 	@XmlElement
 	private Address address;
 
-	@XmlElementWrapper(name="dogs")
-	@XmlElement(name="dog")
+	@XmlElementWrapper(name = "dogs")
+	@XmlElement(name = "dog")
 	private List<Dog> dogs;
 
 	public String getName() {

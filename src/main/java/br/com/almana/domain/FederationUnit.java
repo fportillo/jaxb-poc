@@ -1,4 +1,4 @@
-package br.com.almana;
+package br.com.almana.domain;
 
 public enum FederationUnit {
 	NY, CA;
